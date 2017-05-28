@@ -1,6 +1,6 @@
 {
   "name": "site-scraper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Site scraper",
   "main": "index.js",
   "scripts": {
