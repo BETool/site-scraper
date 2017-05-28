@@ -10,6 +10,7 @@ function formater (data) {
         tags: post.tags,
         header: post.header,
         nude: post.nude,
+        date: new Date(),
       }
     );
 
