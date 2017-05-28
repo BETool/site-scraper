@@ -1,10 +1,9 @@
 {
-  "name": "scraper-pikabu",
+  "name": "site-scraper",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
     "lint": "eslint .",
     "test": "mocha --reporter spec --bail --check-leaks test/",
     "prepublish": "npm run clean && npm run build",
@@ -29,5 +28,12 @@
     "eslint-plugin-react": "6.10.3",
     "husky": "0.13.3",
     "mocha": "3.4.1"
-  }
+  },
+  "files": [
+    "index.js",
+    "driver.js",
+    "filters.js",
+    "formater.js",
+    "extractor.js"
+  ]
 }

@@ -2,29 +2,17 @@
 
 const Xray = require('x-ray');
 const filters = require('./filters');
+const extractor = require('./extractor');
+const formater = require('./formater');
 const driver = require('./driver')('Windows-1251');
 
 
 const x = Xray({ filters }).driver(driver);
-const URL = 'http://pikabu.ru/story/_';
-const extractor = {
-  gif: {
-    src: 'a@href',
-    preview: '.b-gifx__image@src',
-  },
-  image: 'a@href',
-  text: ['p | trim'],
-  video: x('.b-video', {
-    url: '@data-url',
-    preview: '.b-video__preview@style | getUrl',
-  }),
-};
 
-
-function scrape (counter) {
+function scrape (url) {
   return new Promise((resolve, reject) => {
     x(
-      `${URL}${counter}`,
+      url,
       '.story',
       [{
         id: '@data-story-id',
@@ -34,27 +22,31 @@ function scrape (counter) {
         nude: '.story__straw@class | exist',
         block: '.b-story-blocks__wrapper | exist',
         blocks: x('.b-story-block', [{
+          type: extractor.type('.b-story-block__content@html'),
           gif: extractor.gif,
           text: extractor.text,
           image: extractor.image,
-          video: extractor.video,
-          type: '.b-story-block__content@html | trim | parseMediaType',
+          video: extractor.video(x),
         }]),
         single: x('.story__wrapper > .b-story__content', {
+          type: extractor.type('@html'),
           gif: extractor.gif,
           text: extractor.text,
           image: extractor.image,
-          video: extractor.video,
-          type: '@html | trim | parseMediaType',
+          video: extractor.video(x),
         }),
       }]
     )((err, data) => {
       if (err) {
         return reject(err);
       }
-      resolve(data);
+
+      resolve(formater(data));
     });
   });
 }
+
+// scrape('http://pikabu.ru/story/ta_strana_kotoraya_vzbuntuetsya_protiv_ssha_srazu_zhe_poluchaet_napadenie_igil_predannyikh_psov_pindyi_infowars_perevod_na_russkiy_yazyik_5083607')
+// .then(data => console.log(JSON.stringify(data, null, 2)));
 
 module.exports = scrape;
