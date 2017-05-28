@@ -6,7 +6,6 @@
   "scripts": {
     "lint": "eslint .",
     "test": "mocha --reporter spec --bail --check-leaks test/",
-    "prepublish": "npm run clean && npm run build",
     "precommit": "npm run lint",
     "prepush": "npm run lint"
   },
