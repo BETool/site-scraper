@@ -14,6 +14,7 @@ function driver (enc, proxy) {
     }
 
     pipe
+      .set('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36')
       .charset(enc)
       .set(ctx.headers)
       .end((err, res) => {
