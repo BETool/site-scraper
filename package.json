@@ -1,0 +1,33 @@
+{
+  "name": "scraper-pikabu",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint .",
+    "test": "mocha --reporter spec --bail --check-leaks test/",
+    "prepublish": "npm run clean && npm run build",
+    "precommit": "npm run lint",
+    "prepush": "npm run lint"
+  },
+  "keywords": [],
+  "author": "Mikhail Garbuzov <madmxg@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "superagent": "3.5.2",
+    "superagent-charset": "1.2.0",
+    "superagent-proxy": "1.0.2",
+    "x-ray": "2.3.2"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "14.1.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-react": "6.10.3",
+    "husky": "0.13.3",
+    "mocha": "3.4.1"
+  }
+}
