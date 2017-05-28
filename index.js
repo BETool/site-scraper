@@ -17,6 +17,7 @@ function scrape (url) {
       [{
         id: '@data-story-id',
         author: '.story__author',
+        rate: '.story__rating-count | trim',
         tags: ['.story__tags a | trim'],
         header: '.story__header-title a',
         nude: '.story__straw@class | exist',

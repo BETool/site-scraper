@@ -7,6 +7,7 @@ function formater (data) {
       {
         id: post.id,
         author: post.author,
+        rate: parseInt(post.rate, 10) || 0,
         tags: post.tags,
         header: post.header,
         nude: post.nude,
